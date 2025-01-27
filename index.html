@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Interativa | CreateFinix</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons (opcional, para usar ícones do Bootstrap) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
+    <!--<link rel="stylesheet" href="style.css">-->
+  </head>
+  <body>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <!-- Timer -->
+        <div class="col-12 col-md-4 text-center mb-3 order-md-1 order-2">
+          <div id="container-timer" class="p-3 border rounded bg-light shadow">
+            <div id="timer" class="fs-3 fw-bold">00:00</div>
+            <button id="startTimer" class="btn btn-success mt-2">
+              <i class="bi bi-play-fill"></i>
+            </button>
+            <button id="pauseTimer" class="btn btn-warning mt-2">
+              <i class="bi bi-pause-fill"></i>
+            </button>
+            <button id="resetTimer" class="btn btn-danger mt-2">
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Calculadora -->
+        <div class="col-12 col-md-8 order-md-2 order-1">
+          <div class="calculator p-4 border rounded bg-light shadow">
+            <!-- Display -->
+            <div class="display form-control text-end mb-3 fs-3" id="display">
+              0
+            </div>
+
+            <!-- Histórico -->
+            <div id="history" class="mt-3">
+              <h5>Histórico</h5>
+              <ul id="history-list" class="list-unstyled">
+                <!-- Histórico será inserido aqui -->
+              </ul>
+            </div>
+
+            <!-- Botões -->
+            <div class="buttons">
+              <div class="row g-2">
+                <button class="col-3 btn btn-secondary">(</button>
+                <button class="col-3 btn btn-secondary">)</button>
+                <button class="col-3 btn btn-secondary">mod</button>
+                <button class="col-3 btn btn-danger" id="clear">C</button>
+              </div>
+              <div class="row g-2">
+                <button class="col-3 btn btn-secondary">7</button>
+                <button class="col-3 btn btn-secondary">8</button>
+                <button class="col-3 btn btn-secondary">9</button>
+                <button class="col-3 btn btn-primary">/</button>
+              </div>
+              <div class="row g-2 mt-2">
+                <button class="col-3 btn btn-secondary">4</button>
+                <button class="col-3 btn btn-secondary">5</button>
+                <button class="col-3 btn btn-secondary">6</button>
+                <button class="col-3 btn btn-primary">x</button>
+              </div>
+              <div class="row g-2 mt-2">
+                <button class="col-3 btn btn-secondary">1</button>
+                <button class="col-3 btn btn-secondary">2</button>
+                <button class="col-3 btn btn-secondary">3</button>
+                <button class="col-3 btn btn-primary">-</button>
+              </div>
+              <div class="row g-2 mt-2">
+                <button class="col-6 btn btn-secondary">0</button>
+                <button class="col-3 btn btn-secondary">.</button>
+                <button class="col-3 btn btn-primary">+</button>
+              </div>
+              <div class="row g-2 mt-2">
+                <button class="col-12 btn btn-success">=</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

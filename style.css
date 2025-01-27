@@ -1,0 +1,189 @@
+/* Layout da calculadora */
+.calculator {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;  /* Limita o tamanho máximo da calculadora */
+    margin: 0 auto;
+    padding: 20px;  /* Adicionando um padding para não encostar nas bordas */
+}
+
+/* Display da calculadora */
+.display {
+    background-color: #222;
+    color: white;
+    font-size: 2em;
+    text-align: right;
+    padding: 20px;
+    border-radius: 5px;  /* Borda arredondada */
+    margin-bottom: 10px;  /* Espaço entre display e botões */
+}
+
+/* Estilo geral dos botões */
+.button {
+    font-size: 1.5em;
+    padding: 20px;  /* Aumenta o tamanho dos botões */
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, transform 0.1s ease;  /* Suavizar transição de cor e adicionar efeito de "click" */
+}
+
+.button:active {
+    background-color: #ccc;
+    transform: scale(0.95);  /* Efeito de clique visual */
+}
+
+/* Estilo de operadores */
+.button.operator {
+    background-color: #f0ad4e;
+    color: white;  /* Garantir que o texto seja legível */
+}
+
+.extra-buttons .button {
+    background-color: #5bc0de;
+    color: white;
+}
+
+.extra-buttons .button:active {
+    background-color: #31b0d5;
+}
+
+/* Botões de memória e operações adicionais */
+button.operator:hover,
+button#memory:hover,
+button#sqrt:hover,
+button#square:hover {
+    background-color: #31b0d5;
+    transform: scale(1.05);  /* Aumentar o tamanho ao passar o mouse para destaque */
+}
+
+/* Estilo da div container-timer */
+.container-timer {
+    font-size: 2em;
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    width: 150px;
+    position: absolute; /* Usando posicionamento absoluto */
+    top: 10px; /* Distância do topo */
+    right: 20px; /* Distância da borda direita */
+}
+
+/* Estilo do temporizador */
+.timer {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    padding: 5px;
+    border: 2px solid #ccc;  /* Adiciona uma borda ao redor do temporizador */
+    border-radius: 10px;      /* Bordas arredondadas */
+    background-color: #f4f4f4;
+}
+
+/* Ajuste dos botões de temporizador */
+
+
+/* Estilo do botão de play */
+#startTimer {
+    background-color: #28a745;
+}
+
+#startTimer:hover {
+    background-color: #218838;
+}
+
+/* Estilo do botão de pausa */
+#pauseTimer {
+    background-color: #ffc107;
+}
+
+#pauseTimer:hover {
+    background-color: #e0a800;
+}
+
+
+/* Ajuste de tamanho para telas menores */
+@media (max-width: 600px) {
+    .button {
+        font-size: 1.2em;  /* Tamanho de fonte menor em telas pequenas */
+        padding: 15px;  /* Ajustando o padding para botões menores */
+    }
+
+    .display {
+        font-size: 1.8em;  /* Ajusta o tamanho da fonte do display */
+    }
+
+    .container-timer {
+        position: static;
+        margin: 20px auto 0 auto;
+        width: 100%; /* Reduz a largura da div */
+        max-width: 300px;
+    }
+
+    /* Ajuste para botões */
+    .button#start-timer,
+    .button#pauseTimer {
+        font-size: 1em; /* Reduz o tamanho dos botões */
+        margin: 20px;
+        
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator {
+        padding: 10px;
+        max-width: 100%;
+    }
+
+    .display {
+        font-size: 1.5em;
+        padding: 15px;
+    }
+
+    .button {
+        font-size: 1.2em;
+        padding: 12px;
+    }
+    .container-timer {
+        font-size: 3em;  /* Aumenta o tamanho da fonte */
+        top: 20px; /* Aumenta a distância do topo */
+        right: 40px; /* Aumenta a distância da borda direita */
+        width: 200px; /* Aumenta a largura da div */
+    }
+
+    /* Ajuste para botões */
+    .button#start-timer,
+    .button#pauseTimer {
+        font-size: 1.5em; /* Aumenta o tamanho dos botões */
+    }
+}
+
+/* Estilo para o botão de temporizador */
+.button#start-timer {
+    background-color: #28a745;
+    color: white;
+    font-size: 1.2em;
+    transition: background-color 0.2s ease; /* Transição suave */
+}
+
+.button#start-timer:hover {
+    background-color: #218838;
+}
+
+/* Layout da grade de botões */
+.buttons, .extra-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Timer - Tamanho da fonte e estilo */
+.timer {
+    font-size: 2em;
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+}   
