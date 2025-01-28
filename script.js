@@ -6,24 +6,38 @@ const pauseTimerBtn = document.getElementById('pauseTimer');
 const resetTimerBtn = document.getElementById('resetTimer');
 const historyContainer = document.getElementById('history');
 const clearButton = document.getElementById('clear');
+const themeToggle = document.getElementById('themeToggle');
 
 // Variáveis do cálculo e timer
-let currentCalculation = "";
 let currentInput = '';
 let previousInput = '';
 let operation = null;
 let isRunning = false;
-let memory = 0;
 let timer;
 let seconds = 0;
 let minutes = 0;
 let expression = ''; // Para armazenar a expressão enquanto o usuário digita
 let history = [];
 
+// Função para alternar o tema
+function toggleTheme() {
+  const body = document.body;
+
+  // Verifica o tema atual e alterna
+  if (body.classList.contains('bg-dark')) {
+    body.classList.remove('bg-dark', 'text-light');
+    body.classList.add('bg-light', 'text-dark');
+    console.log("Tema alterado para Claro");
+  } else {
+    body.classList.remove('bg-light', 'text-dark');
+    body.classList.add('bg-dark', 'text-light');
+    console.log("Tema alterado para Escuro");
+  }
+}
+
 // Atualiza a tela com a entrada atual (mostra a expressão)
 function updateDisplay() {
   display.textContent = expression || '0';
-  console.log("Display Atualizado");
 }
 
 // Função para processar o clique nos botões da calculadora
@@ -45,7 +59,6 @@ function handleButtonClick(event) {
 function appendNumber(number) {
   expression += number; // Agora adiciona à expressão
   updateDisplay();
-  console.log(`Número adicionado: ${number}`);
 }
 
 // Configura a operação
@@ -55,15 +68,17 @@ function chooseOperation(op) {
   operation = op;
   previousInput = expression; // Salva a expressão até agora
   expression = ''; // Limpa a expressão para digitar o próximo número
-  console.log(`Operação escolhida: ${op}`);
 }
 
 // Calcula o resultado
 function equals() {
-  if (operation) calculate();
-  console.log('Resultado calculado');
+  if (operation) {
+    calculate();
+    operation = null; // Limpa a operação após o cálculo
+  }
 }
 
+// Realiza o cálculo com base na operação escolhida
 function calculate() {
   const prev = parseFloat(previousInput);
   const current = parseFloat(expression);
@@ -72,41 +87,44 @@ function calculate() {
 
   let result;
   switch (operation) {
-    case '+': result = prev + current; break;
-    case '-': result = prev - current; break;
-    case '*': result = prev * current; break;
-    case '/': result = current !== 0 ? prev / current : 'Erro'; break;
-    default: return;
+    case '+':
+      result = prev + current;
+      break;
+    case '-':
+      result = prev - current;
+      break;
+    case '*':
+      result = prev * current;
+      break;
+    case '/':
+      result = current !== 0 ? prev / current : 'Erro';
+      break;
+    default:
+      return;
   }
 
-  expression = result.toString();
-  operation = null;
-  previousInput = '';
-
   // Adiciona cálculo ao histórico
-  addToHistory(`${previousInput} ${operation} ${current} = ${result}`);
+  addToHistory(`${previousInput} ${operation} ${expression} = ${result}`);
+
+  // Atualiza a exibição com o resultado
+  expression = result.toString();
+  previousInput = '';
   updateDisplay();
-  console.log(`Cálculo: ${previousInput} ${operation} ${current} = ${result}`);
 }
 
-// Limpa a entrada e a operação
+// Limpa apenas a entrada atual
 function clearDisplay() {
   expression = ''; // Limpa apenas a expressão
-  previousInput = '';
-  operation = null;
   updateDisplay();
-  console.log("Entrada e Operação Limpas");
 }
 
 // Adiciona a expressão ao histórico
 function addToHistory(expression) {
   history.unshift(expression);
   if (history.length > 5) {
-    history.pop();
+    history.pop(); // Remove o item mais antigo se o histórico ultrapassar 5 itens
   }
-
   updateHistoryDisplay();
-  console.log(`Histórico atualizado: ${expression}`);
 }
 
 // Atualiza a exibição do histórico
@@ -119,7 +137,6 @@ function startTimer() {
   if (!isRunning) {
     timer = setInterval(updateTimer, 1000);
     isRunning = true;
-    console.log("Temporizador Iniciado");
   }
 }
 
@@ -127,7 +144,6 @@ function pauseTimer() {
   if (isRunning) {
     clearInterval(timer);
     isRunning = false;
-    console.log("Temporizador pausado");
   }
 }
 
@@ -137,7 +153,6 @@ function resetTimer() {
   seconds = 0;
   minutes = 0;
   timerDisplay.textContent = '00:00';
-  console.log("Temporizador Resetado");
 }
 
 function updateTimer() {
@@ -147,7 +162,6 @@ function updateTimer() {
     minutes++;
   }
   timerDisplay.textContent = formatTime(minutes, seconds);
-  console.log(`Temporizador Atualizado: ${minutes}:${seconds}`);
 }
 
 function formatTime(minutes, seconds) {
@@ -163,3 +177,4 @@ document.querySelectorAll('.buttons button').forEach(button => {
 startTimerBtn.addEventListener('click', startTimer);
 pauseTimerBtn.addEventListener('click', pauseTimer);
 resetTimerBtn.addEventListener('click', resetTimer);
+themeToggleBtn.addEventListener('click', toggleTheme);
